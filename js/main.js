@@ -6,12 +6,11 @@ const getRandomIntInclusive = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 }
-getRandomIntInclusive();
+getRandomIntInclusive(1, 15);
 
 const getRandomArbitraryInclusive = (min, max, digits) => {
   if (min >= 0 && min <= max && digits >= 0) {
     return (Math.random() * (max - min + 1) + min).toFixed(digits);
   }
 }
-getRandomArbitraryInclusive();
-
+getRandomArbitraryInclusive(2.15, 27.445, 5);
