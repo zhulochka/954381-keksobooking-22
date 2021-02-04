@@ -8,9 +8,9 @@ const getRandomIntInclusive = (min, max) => {
 }
 getRandomIntInclusive(1, 15);
 
-const getRandomArbitraryInclusive = (min, max, digits) => {
+const getRandomFloatInclusive = (min, max, digits) => {
   if (min >= 0 && min <= max && digits >= 0) {
-    return (Math.random() * (max - min + 1) + min).toFixed(digits);
+    return parseFloat((Math.random() * (max - min) + min).toFixed(digits));
   }
 }
-getRandomArbitraryInclusive(2.15, 27.445, 5);
+getRandomFloatInclusive(2.15, 27.445, 5);
