@@ -22,36 +22,35 @@ const X_MIN = 35.65000;
 const X_MAX = 35.70000;
 const Y_MIN = 139.70000;
 const Y_MAX = 139.80000;
-const SIMILAR_ADVERT_COUNT = 10;
 const MIN_PRICE = 0;
 const MAX_PRICE = 1000000;
 const MIN_ROOMS = 1;
 const MAX_ROOMS = 100;
 const MIN_GUESTS = 1;
-const TITLE = [
+const TITLES = [
   'Солнечное место',
   'В самом сердце города',
   'Уютное местечко',
   'У театра',
   'Комфорт класс',
 ];
-const TYPE = [
+const TYPES = [
   'palace',
   'flat',
   'house',
   'bungalow',
 ];
-const CHECKIN = [
+const CHECKINS = [
   '12:00',
   '13:00',
   '14:00',
 ];
-const CHECKOUT = [
+const CHECKOUTS = [
   '12:00',
   '13:00',
   '14:00',
 ];
-const FEATURES_LIST = [
+const FEATURES = [
   'wifi',
   'dishwasher',
   'parking',
@@ -59,14 +58,14 @@ const FEATURES_LIST = [
   'elevator',
   'conditioner',
 ];
-const  DESCRIPTION = [
+const DESCRIPTIONS = [
   'Незабываемый отдых',
   'Свежий ремонт, без окон, в центре города',
   'С отличным ремонтом',
   'Рядом расположены большой торговый центр, кинотеатры, аквапарк',
   'Мы сделали все, чтобы наши гости чувствовали уют и комфорт ',
 ];
-const  PHOTOS_LIST = [
+const PHOTOS = [
   'http://o0.github.io/assets/images/tokyo/hotel1.jpg',
   'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
   'http://o0.github.io/assets/images/tokyo/hotel3.jpg',
@@ -108,34 +107,36 @@ const createOffer = (resultCreateLocation) => {
 
   const randomNumberRooms = getRandomIntInclusive(MIN_ROOMS, MAX_ROOMS);
   const offer = {
-    title: getRandomArrayElement(TITLE),
-    address: ('location ' + resultCreateLocation.x + ', ' + 'location ' + resultCreateLocation.y).toString(),
+    title: getRandomArrayElement(TITLES),
+    address: (resultCreateLocation.x + ', ' + resultCreateLocation.y).toString(),
     price: getRandomIntInclusive(MIN_PRICE, MAX_PRICE),
-    type: getRandomArrayElement(TYPE),
+    type: getRandomArrayElement(TYPES),
     rooms: randomNumberRooms,
     guests: getRandomIntInclusive(MIN_GUESTS, getRandomIntInclusive (MIN_GUESTS, randomNumberRooms)),
-    checkin: getRandomArrayElement(CHECKIN),
-    checkout: getRandomArrayElement(CHECKOUT),
-    features: getArrayRandomLength(FEATURES_LIST),
-    description: getRandomArrayElement(DESCRIPTION),
-    photos: getArrayRandomLength(PHOTOS_LIST),
+    checkin: getRandomArrayElement(CHECKINS),
+    checkout: getRandomArrayElement(CHECKOUTS),
+    features: getArrayRandomLength(FEATURES),
+    description: getRandomArrayElement(DESCRIPTIONS),
+    photos: getArrayRandomLength(PHOTOS),
   };
   return offer;
 };
 
 
 
-const createAdvert = () => {
-  const createLocation = () => {
-    const coordinateDigits = 5;
-    const randomX = getRandomFloatInclusive(X_MIN, X_MAX, coordinateDigits);
-    const randomY = getRandomFloatInclusive(Y_MIN, Y_MAX, coordinateDigits);
-    const location = {
-      x: randomX,
-      y: randomY,
-    };
-    return location;
+const createLocation = () => {
+  const coordinateDigits = 5;
+  const randomX = getRandomFloatInclusive(X_MIN, X_MAX, coordinateDigits);
+  const randomY = getRandomFloatInclusive(Y_MIN, Y_MAX, coordinateDigits);
+  const location = {
+    x: randomX,
+    y: randomY,
   };
+  return location;
+};
+
+
+const createAdvert = () => {
   const resultCreateLocation = createLocation();
 
   const advert = {
@@ -148,7 +149,7 @@ const createAdvert = () => {
 };
 
 
-const createSimilarAdvert = () => {
-  return new Array(SIMILAR_ADVERT_COUNT).fill(null).map(() => createAdvert());
+const createSimilarAdverts = (similarAdvertCount) => {
+  return new Array(similarAdvertCount).fill(null).map(() => createAdvert());
 };
-createSimilarAdvert();
+createSimilarAdverts();
