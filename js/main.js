@@ -22,7 +22,7 @@ const X_MIN = 35.65000;
 const X_MAX = 35.70000;
 const Y_MIN = 139.70000;
 const Y_MAX = 139.80000;
-const SIMILAR_ADVERT_COUNT = 4;
+const SIMILAR_ADVERT_COUNT = 10;
 const MIN_PRICE = 0;
 const MAX_PRICE = 1000000;
 const MIN_ROOMS = 1;
@@ -86,8 +86,8 @@ const getArrayRandomLength = (list) => {
     const  isElementOne = (element) => element === arrayRandomLengthElement;
     if ((arrayRandomLength.some(isElementOne) === false) || (arrayRandomLength.length === 0)) {
       arrayRandomLength.push(arrayRandomLengthElement);
-    };
-  };
+    }
+  }
   return arrayRandomLength;
 };
 
@@ -148,7 +148,7 @@ const createAdvert = () => {
 };
 
 
-
-const similarAdverts = new Array(SIMILAR_ADVERT_COUNT).fill(null).map(() => createAdvert());
-
-
+const createSimilarAdvert = () => {
+  return new Array(SIMILAR_ADVERT_COUNT).fill(null).map(() => createAdvert());
+};
+createSimilarAdvert();
