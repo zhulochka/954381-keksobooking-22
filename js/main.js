@@ -1,2 +1,2 @@
-import './get-mock-data.js';
+import './temp-data.js';
 
