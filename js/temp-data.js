@@ -26,16 +26,12 @@ const TYPES = [
   'house',
   'bungalow',
 ];
-const CHECKINS = [
+const TIME = [
   '12:00',
   '13:00',
   '14:00',
 ];
-const CHECKOUTS = [
-  '12:00',
-  '13:00',
-  '14:00',
-];
+
 const FEATURES = [
   'wifi',
   'dishwasher',
@@ -92,6 +88,7 @@ const createAuthor = () => {
 const createOffer = (resultCreateLocation) => {
 
   const randomNumberRooms = getRandomIntInclusive(MIN_ROOMS, MAX_ROOMS);
+  const timeCheckinCheckout = getRandomArrayElement(TIME);
   const offer = {
     title: getRandomArrayElement(TITLES),
     address: (resultCreateLocation.x + ', ' + resultCreateLocation.y).toString(),
@@ -99,8 +96,8 @@ const createOffer = (resultCreateLocation) => {
     type: getRandomArrayElement(TYPES),
     rooms: randomNumberRooms,
     guests: getRandomIntInclusive(MIN_GUESTS, getRandomIntInclusive (MIN_GUESTS, randomNumberRooms)),
-    checkin: getRandomArrayElement(CHECKINS),
-    checkout: getRandomArrayElement(CHECKOUTS),
+    checkin: timeCheckinCheckout,
+    checkout: timeCheckinCheckout,
     features: getArrayRandomLength(FEATURES),
     description: getRandomArrayElement(DESCRIPTIONS),
     photos: getArrayRandomLength(PHOTOS),
@@ -137,5 +134,6 @@ const createAdvert = () => {
 const createSimilarAdverts = (similarAdvertCount) => {
   return new Array(similarAdvertCount).fill(null).map(() => createAdvert());
 };
-createSimilarAdverts(10);
+//createSimilarAdverts(10);
 
+export {createSimilarAdverts, TYPES, FEATURES};

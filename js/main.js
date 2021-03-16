@@ -1,2 +1,2 @@
-import './temp-data.js';
 
+import './get-markup-similar-adverts.js';
