@@ -64,9 +64,12 @@ similarAdverts.forEach((advert) => {
   similarListElement.appendChild(advertElement);
 
   const advertElementItems = advertElement.children;
+
   for (const advertElementItem of advertElementItems) {
-    if (advertElementItem.innerText === '' && (advertElementItem.src === '' || advertElementItem.src === undefined)) {
+    if (advertElementItem.innerText === '' && advertElementItem.childElementCount === 0 && (advertElementItem.src === '' || advertElementItem.src === undefined)) {
+
       advertElementItem.classList.add('hidden');
+
     }
   }
 });
