@@ -1,16 +1,16 @@
-import {createSimilarAdverts, TYPES, FEATURES} from './temp-data.js';
+import {createSimilarAdverts, TYPES, TRANSLATION_TYPES, FEATURES} from './temp-data.js';
 
-const TRANSLATION_TYPES = [
-  'Дворец',
-  'Квартира',
-  'Дом',
-  'Бунгало',
-];
 
-const getMatchingTypes = (englishType) => {
-  const typesIndex = TYPES.indexOf(englishType, 0);
-  return TRANSLATION_TYPES[typesIndex];
+
+
+const createTypesObjectVocabulary = () => {
+  const typesObject = {};
+  for (let i = 0; i <= TYPES.length - 1; i++) {
+    typesObject[TYPES[i]] = TRANSLATION_TYPES[i];
+  }
+  return typesObject;
 };
+const typesObjectVocabulary = createTypesObjectVocabulary();
 
 const similarListElement = document.querySelector('#map-canvas');
 const similarAdvertTemplate = document.querySelector('#card')
@@ -25,7 +25,7 @@ similarAdverts.forEach((advert) => {
   advertElement.querySelector('.popup__title').textContent = advert.offer.title;
   advertElement.querySelector('.popup__text--address').textContent = advert.offer.address;
   advertElement.querySelector('.popup__text--price').textContent = advert.offer.price + ' ₽/ночь';
-  advertElement.querySelector('.popup__type').textContent = getMatchingTypes(advert.offer.type);
+  advertElement.querySelector('.popup__type').textContent = typesObjectVocabulary[advert.offer.type];
   advertElement.querySelector('.popup__text--capacity').textContent = (advert.offer.rooms !== 100 ? (advert.offer.rooms
     + ' комнаты для ' + advert.offer.guests + ' гостей') : (advert.offer.rooms + ' комнат не для гостей'));
   advertElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + advert.offer.checkin
