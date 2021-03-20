@@ -26,6 +26,12 @@ const TYPES = [
   'house',
   'bungalow',
 ];
+const TRANSLATION_TYPES = [
+  'Дворец',
+  'Квартира',
+  'Дом',
+  'Бунгало',
+];
 const TIME = [
   '12:00',
   '13:00',
@@ -134,6 +140,6 @@ const createAdvert = () => {
 const createSimilarAdverts = (similarAdvertCount) => {
   return new Array(similarAdvertCount).fill(null).map(() => createAdvert());
 };
-//createSimilarAdverts(10);
 
-export {createSimilarAdverts, TYPES, FEATURES};
+
+export {createSimilarAdverts, TYPES, TRANSLATION_TYPES, FEATURES};
