@@ -25,15 +25,15 @@ const minPriceOfTypeVocabulary = createMinPriceOfTypeVocabulary();
 priceSelect.placeholder = minPriceOfTypeVocabulary[typeSelect.value];
 priceSelect.min = minPriceOfTypeVocabulary[typeSelect.value];
 
-typeSelect.onchange = function () {
+typeSelect.addEventListener('change', () => {
   priceSelect.placeholder = minPriceOfTypeVocabulary[typeSelect.value];
   priceSelect.min = minPriceOfTypeVocabulary[typeSelect.value];
-};
+});
 
-timeIn.onchange = function () {
+timeIn.addEventListener('change', () => {
   timeOut.value = timeIn.value;
-};
+});
 
-timeOut.onchange = function () {
+timeOut.addEventListener('change', () => {
   timeIn.value = timeOut.value;
-};
+});
