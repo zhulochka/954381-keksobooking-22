@@ -16,7 +16,7 @@ const similarListElement = document.querySelector('#map-canvas');
 const similarAdvertTemplate = document.querySelector('#card')
   .content
   .querySelector('.popup');
-
+/*
 const similarAdverts = createSimilarAdverts(1);
 
 
@@ -74,7 +74,7 @@ similarAdverts.forEach((advert) => {
   }
 });
 
-
+*/
 
 
 

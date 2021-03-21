@@ -7,10 +7,21 @@ const MIN_PRICE_OF_TYPE = [
   0,
 ];
 
+const adForm = document.querySelector('.ad-form');
+const adFormHeaderFieldset = document.querySelector('.ad-form-header');
+const adFormElementFieldsets = document.querySelectorAll('.ad-form__element');
+
 const typeSelect = document.querySelector('#type');
 const priceSelect = document.querySelector('#price');
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
+
+
+adForm.classList.add('ad-form--disabled');
+adFormHeaderFieldset.setAttribute('disabled', 'disabled');
+for (let adFormElementFieldset of adFormElementFieldsets) {
+  adFormElementFieldset.setAttribute('disabled', 'disabled');
+}
 
 
 const createMinPriceOfTypeVocabulary = () => {
