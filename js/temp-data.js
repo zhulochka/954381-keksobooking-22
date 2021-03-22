@@ -59,6 +59,15 @@ const PHOTOS = [
   'http://o0.github.io/assets/images/tokyo/hotel3.jpg',
 ];
 
+const createTypesObjectVocabulary = () => {
+  const typesObject = {};
+  for (let i = 0; i <= TYPES.length - 1; i++) {
+    typesObject[TYPES[i]] = TRANSLATION_TYPES[i];
+  }
+  return typesObject;
+};
+const typesObjectVocabulary = createTypesObjectVocabulary();
+
 
 const getRandomArrayElement = (elements) => {
   return elements[getRandomIntInclusive(0, elements.length - 1)];
@@ -142,4 +151,5 @@ const createSimilarAdverts = (similarAdvertCount) => {
 };
 
 
-export {createSimilarAdverts, TYPES, TRANSLATION_TYPES, FEATURES};
+
+export {createSimilarAdverts, TYPES, TRANSLATION_TYPES, FEATURES, typesObjectVocabulary};

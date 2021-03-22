@@ -1,5 +1,7 @@
 import {TYPES} from './temp-data.js';
 
+
+
 const MIN_PRICE_OF_TYPE = [
   10000,
   1000,
@@ -7,10 +9,12 @@ const MIN_PRICE_OF_TYPE = [
   0,
 ];
 
+
 const typeSelect = document.querySelector('#type');
 const priceSelect = document.querySelector('#price');
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
+const address = document.querySelector('#address');
 
 
 const createMinPriceOfTypeVocabulary = () => {
@@ -25,6 +29,7 @@ const minPriceOfTypeVocabulary = createMinPriceOfTypeVocabulary();
 priceSelect.placeholder = minPriceOfTypeVocabulary[typeSelect.value];
 priceSelect.min = minPriceOfTypeVocabulary[typeSelect.value];
 
+
 typeSelect.addEventListener('change', () => {
   priceSelect.placeholder = minPriceOfTypeVocabulary[typeSelect.value];
   priceSelect.min = minPriceOfTypeVocabulary[typeSelect.value];
@@ -37,3 +42,7 @@ timeIn.addEventListener('change', () => {
 timeOut.addEventListener('change', () => {
   timeIn.value = timeOut.value;
 });
+
+
+
+export {address};

@@ -1,2 +1,4 @@
-import './get-markup-similar-adverts.js';
+
+import './map.js';
 import './form.js';
+import './status-main-page.js';
