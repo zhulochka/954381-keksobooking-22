@@ -19,7 +19,6 @@ const timeOut = document.querySelector('#timeout');
 const address = document.querySelector('#address');
 const roomNumberSelect = document.querySelector('#room_number');
 const guestsNumberSelect = document.querySelector('#capacity');
-const btnAdFormSubmit = document.querySelector('.ad-form__submit');
 
 
 
@@ -54,6 +53,7 @@ const minPriceOfTypeVocabulary = createMinPriceOfTypeVocabulary();
 priceSelect.min = minPriceOfTypeVocabulary[typeSelect.value];
 
 
+
 typeSelect.addEventListener('change', () => {
   priceSelect.placeholder = minPriceOfTypeVocabulary[typeSelect.value];
   priceSelect.min = minPriceOfTypeVocabulary[typeSelect.value];
@@ -66,6 +66,7 @@ typeSelect.addEventListener('change', () => {
   }
   typeSelect.reportValidity();
 });
+
 
 
 priceSelect.addEventListener('input', () => {
@@ -83,17 +84,12 @@ priceSelect.addEventListener('input', () => {
 
 
 
-roomNumberSelect.addEventListener('change', () => {
-  const guestsNumberSelectOptions = Array.from(guestsNumberSelect.querySelectorAll('option'));
-
-  for (let i = 0; i < guestsNumberSelectOptions.length; i++) {
-    guestsNumberSelectOptions[i].classList.remove('hidden');
-  }
-
+const guestsNumberSelectOptions = Array.from(guestsNumberSelect.querySelectorAll('option'));
+const checkGuestsNumberSelectOptions = () => {
   if (Number(roomNumberSelect.value) !== 100) {
     for (let i = 0; i < guestsNumberSelectOptions.length; i++) {
       if ((Number(guestsNumberSelectOptions[i].value) > Number(roomNumberSelect.value)) ||
-      (Number(guestsNumberSelectOptions[i].value) === 0)) {
+        (Number(guestsNumberSelectOptions[i].value) === 0)) {
         guestsNumberSelectOptions[i].classList.add('hidden');
       }
     }
@@ -104,10 +100,24 @@ roomNumberSelect.addEventListener('change', () => {
       }
     }
   }
-  roomNumberSelect.reportValidity();
+};
+checkGuestsNumberSelectOptions();
+
+
+roomNumberSelect.addEventListener('change', () => {
+  const currentGuestsNumberValue = guestsNumberSelect.value;
+
+  if ((Number(currentGuestsNumberValue) > Number(roomNumberSelect.value)) ||
+    ((Number(currentGuestsNumberValue) !== 0) && (Number(roomNumberSelect.value) === 100)) ||
+    ((Number(currentGuestsNumberValue) === 0) && (Number(roomNumberSelect.value) !== 100))) {
+    guestsNumberSelect.value = '';
+  }
+
+  for (let i = 0; i < guestsNumberSelectOptions.length; i++) {
+    guestsNumberSelectOptions[i].classList.remove('hidden');
+  }
+  checkGuestsNumberSelectOptions();
 });
-
-
 
 
 timeIn.addEventListener('change', () => {
@@ -117,29 +127,6 @@ timeIn.addEventListener('change', () => {
 timeOut.addEventListener('change', () => {
   timeIn.value = timeOut.value;
 });
-
-
-btnAdFormSubmit.addEventListener('submit', (evt) => {
-  if ((Number(roomNumberSelect.value) < Number(guestsNumberSelect.value)) ||
-    (((Number(roomNumberSelect.value)) === 100) && (Number(guestsNumberSelect.value)) !== 0)) {
-
-
-    evt.preventDefault();
-
-    if ((Number(roomNumberSelect.value) < Number(guestsNumberSelect.value)) ||
-      (((Number(roomNumberSelect.value)) === 100) && (Number(guestsNumberSelect.value)) !== 0)) {
-      guestsNumberSelect.setCustomValidity('Количество гостей не должно превышать количество комнат');
-    } else {
-      guestsNumberSelect.setCustomValidity('100 комнат - не для гостей');
-    }
-    
-  }  else {
-    guestsNumberSelect.setCustomValidity('');
-  }
-  priceSelect.reportValidity();
-});
-
-
 
 
 

@@ -1005,12 +1005,6 @@ fieldset {
   opacity: 0.6;
 }
 
-
-.error__input {
-  border: 4px solid #ff5635;
-  background-color: #ff5635;
-}
-
 .visually-hidden {
   position: absolute;
 
