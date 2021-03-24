@@ -105,13 +105,29 @@ checkGuestsNumberSelectOptions();
 
 
 roomNumberSelect.addEventListener('change', () => {
-  const currentGuestsNumberValue = guestsNumberSelect.value;
+  const previousGuestsNumberValue = guestsNumberSelect.value;
 
-  if ((Number(currentGuestsNumberValue) > Number(roomNumberSelect.value)) ||
-    ((Number(currentGuestsNumberValue) !== 0) && (Number(roomNumberSelect.value) === 100)) ||
-    ((Number(currentGuestsNumberValue) === 0) && (Number(roomNumberSelect.value) !== 100))) {
-    guestsNumberSelect.value = '';
+  if ((Number(previousGuestsNumberValue) > Number(roomNumberSelect.value)) ||
+    ((Number(previousGuestsNumberValue) !== 0) && (Number(roomNumberSelect.value) === 100)) ||
+    ((Number(previousGuestsNumberValue) === 0) && (Number(roomNumberSelect.value) !== 100))) {
+    //guestsNumberSelect.value = '';
+    guestsNumberSelect.setCustomValidity('Выберите подходящий вариант из списка');
+    guestsNumberSelect.addEventListener('change', () => {
+      if (((Number(guestsNumberSelect.value) <= Number(roomNumberSelect.value)) &&
+        ((Number(guestsNumberSelect.value) !== 0) && (Number(roomNumberSelect.value) !== 100))) ||
+        ((Number(guestsNumberSelect.value) === 0) && (Number(roomNumberSelect.value) === 100))) {
+        guestsNumberSelect.setCustomValidity('');
+      }
+    })
+    roomNumberSelect.addEventListener('change', () => {
+      if (((Number(guestsNumberSelect.value) <= Number(roomNumberSelect.value)) &&
+        ((Number(guestsNumberSelect.value) !== 0) && (Number(roomNumberSelect.value) !== 100))) ||
+        ((Number(guestsNumberSelect.value) === 0) && (Number(roomNumberSelect.value) === 100))) {
+        guestsNumberSelect.setCustomValidity('');
+      }
+    })
   }
+  guestsNumberSelect.reportValidity();
 
   for (let i = 0; i < guestsNumberSelectOptions.length; i++) {
     guestsNumberSelectOptions[i].classList.remove('hidden');
