@@ -2,12 +2,13 @@
 
 import {activateMainPage} from './status-main-page.js';
 import {address} from './form.js';
-import {FEATURES, createSimilarAdverts, typesObjectVocabulary} from './temp-data.js';
+import {FEATURES, typesObjectVocabulary} from './temp-data.js';
+
 
 const START_MARKER_COORDINATE_LAT = 35.68950;
 const START_MARKER_COORDINATE_LNG = 139.69171;
-const NUMBER_MARKERS = 10;
-const MAP_SCALE = 12;
+
+const MAP_SCALE = 10;
 const ICON_PIN_SIZE = [
   30,
   30,
@@ -58,7 +59,7 @@ mainPinMarker.on('moveend', (evt) => {
 
 
 
-const similarAdverts = createSimilarAdverts(NUMBER_MARKERS);
+
 
 
 
@@ -138,34 +139,39 @@ const createCustomPopup = (advert) => {
 
 
 
-similarAdverts.forEach((advert) => {
-  const icon = L.icon({
-    iconUrl: 'img/pin.svg',
-    iconSize: [ICON_PIN_SIZE[0], ICON_PIN_SIZE[1]],
-    iconAnchor: [(ICON_PIN_SIZE[0] / 2).toFixed(0), ICON_PIN_SIZE[1]],
-  });
 
-  const marker = L.marker(
-    {
-      lat: advert.location.x,
-      lng: advert.location.y,
-    },
-    {
-      icon,
-    },
-  );
 
-  marker
-    .addTo(map)
-    .bindPopup(createCustomPopup(advert),
+
+const renderSimilarAdverts = async (similarAdverts) => {
+  similarAdverts.forEach((advert) => {
+    const icon = L.icon({
+      iconUrl: 'img/pin.svg',
+      iconSize: [ICON_PIN_SIZE[0], ICON_PIN_SIZE[1]],
+      iconAnchor: [(ICON_PIN_SIZE[0] / 2).toFixed(0), ICON_PIN_SIZE[1]],
+    });
+    const marker = L.marker(
       {
-        keepInView: true,
+        lat: advert.location.lat,
+        lng: advert.location.lng,
       },
-    );
-});
+      {
+        icon,
+      });
+    marker
+      .addTo(map)
+      .bindPopup(createCustomPopup(advert),
+        {
+          keepInView: true,
+        });
+  });
+};
 
 
 
-export {START_MARKER_COORDINATE_LAT, START_MARKER_COORDINATE_LNG};
+
+
+//console.log(similarAdverts);
+
+export {START_MARKER_COORDINATE_LAT, START_MARKER_COORDINATE_LNG, renderSimilarAdverts};
 
 

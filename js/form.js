@@ -13,12 +13,16 @@ const MIN_PRICE_OF_TYPE = [
 
 const titleAdvertInput = document.querySelector('#title');
 const typeSelect = document.querySelector('#type');
+const typeSelectDefault = typeSelect.value;
 const priceSelect = document.querySelector('#price');
+const priceSelectPlaceholderDefault = priceSelect.placeholder;
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
 const address = document.querySelector('#address');
+
 const roomNumberSelect = document.querySelector('#room_number');
 const guestsNumberSelect = document.querySelector('#capacity');
+const advertForm = document.querySelector('.ad-form');
 
 
 
@@ -110,7 +114,7 @@ roomNumberSelect.addEventListener('change', () => {
   if ((Number(previousGuestsNumberValue) > Number(roomNumberSelect.value)) ||
     ((Number(previousGuestsNumberValue) !== 0) && (Number(roomNumberSelect.value) === 100)) ||
     ((Number(previousGuestsNumberValue) === 0) && (Number(roomNumberSelect.value) !== 100))) {
-    //guestsNumberSelect.value = '';
+
     guestsNumberSelect.setCustomValidity('Выберите подходящий вариант из списка');
     guestsNumberSelect.addEventListener('change', () => {
       if (((Number(guestsNumberSelect.value) <= Number(roomNumberSelect.value)) &&
@@ -145,5 +149,32 @@ timeOut.addEventListener('change', () => {
 });
 
 
+const setAdvertFormSubmit = (onSuccess) => {
+  advertForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const formData = new FormData(evt.target);
+    fetch(
+      'https://22.javascript.pages.academy/keksobooking',
+      {
+        method: 'POST',
+        body: formData,
+      })
+      .then(() => onSuccess());
+  });
+};
 
-export {address};
+const clearAdvertForm = () => {
+  titleAdvertInput.value = '';
+  typeSelect.value = typeSelectDefault;
+  priceSelect.value = '';
+  priceSelect.placeholder = priceSelectPlaceholderDefault;
+
+
+
+};
+
+
+
+
+
+export {address, setAdvertFormSubmit, clearAdvertForm};
