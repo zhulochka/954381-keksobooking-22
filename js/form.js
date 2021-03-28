@@ -1,4 +1,7 @@
 import {TYPES} from './temp-data.js';
+import {getDefaultMainPage} from './status-main-page.js';
+
+
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
@@ -19,7 +22,8 @@ const timeOut = document.querySelector('#timeout');
 const address = document.querySelector('#address');
 const roomNumberSelect = document.querySelector('#room_number');
 const guestsNumberSelect = document.querySelector('#capacity');
-
+const advertForm = document.querySelector('.ad-form');
+const buttonAdvertFormReset = document.querySelector('.ad-form__reset');
 
 
 
@@ -36,6 +40,7 @@ titleAdvertInput.addEventListener('input', () => {
 
   titleAdvertInput.reportValidity();
 });
+
 
 
 
@@ -110,7 +115,7 @@ roomNumberSelect.addEventListener('change', () => {
   if ((Number(previousGuestsNumberValue) > Number(roomNumberSelect.value)) ||
     ((Number(previousGuestsNumberValue) !== 0) && (Number(roomNumberSelect.value) === 100)) ||
     ((Number(previousGuestsNumberValue) === 0) && (Number(roomNumberSelect.value) !== 100))) {
-    //guestsNumberSelect.value = '';
+
     guestsNumberSelect.setCustomValidity('Выберите подходящий вариант из списка');
     guestsNumberSelect.addEventListener('change', () => {
       if (((Number(guestsNumberSelect.value) <= Number(roomNumberSelect.value)) &&
@@ -145,5 +150,11 @@ timeOut.addEventListener('change', () => {
 });
 
 
+buttonAdvertFormReset.addEventListener('click', () => {
+  getDefaultMainPage();
+});
 
-export {address};
+
+
+
+export {address, advertForm};

@@ -12,6 +12,7 @@ const MAX_PRICE = 1000000;
 const MIN_ROOMS = 1;
 const MAX_ROOMS = 100;
 const MIN_GUESTS = 1;
+const NUMBER_MARKERS = 10;
 
 const TITLES = [
   'Солнечное место',
@@ -146,10 +147,10 @@ const createAdvert = () => {
 };
 
 
-const createSimilarAdverts = (similarAdvertCount) => {
+const createRandomSimilarAdverts = (similarAdvertCount) => {
   return new Array(similarAdvertCount).fill(null).map(() => createAdvert());
 };
 
+//console.log(createRandomSimilarAdverts(NUMBER_MARKERS));
 
-
-export {createSimilarAdverts, TYPES, TRANSLATION_TYPES, FEATURES, typesObjectVocabulary};
+export {TYPES, TRANSLATION_TYPES, FEATURES, typesObjectVocabulary, createRandomSimilarAdverts, NUMBER_MARKERS};

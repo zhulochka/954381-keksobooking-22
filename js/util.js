@@ -1,3 +1,5 @@
+
+
 const getRandomIntInclusive = (min, max) => {
   if (min >= 0 && min <= max) {
     min = Math.ceil(min);
@@ -12,5 +14,13 @@ const getRandomFloatInclusive = (min, max, digits) => {
   }
 }
 
-export {getRandomIntInclusive, getRandomFloatInclusive};
+
+const isEscEvent = (evt) => {
+  return evt.key === 'Escape' || evt.key === 'Esc';
+};
+
+
+
+
+export {getRandomIntInclusive, getRandomFloatInclusive, isEscEvent};
 

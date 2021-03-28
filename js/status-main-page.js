@@ -1,5 +1,6 @@
-import {address} from './form.js';
-import {START_MARKER_COORDINATE_LAT, START_MARKER_COORDINATE_LNG} from './map.js';
+import {address, advertForm} from './form.js';
+import {mainPinMarker, START_MARKER_COORDINATE_LAT, START_MARKER_COORDINATE_LNG} from './map.js';
+import {mapFiltersForm} from './filters.js';
 
 const mapFilters = document.querySelector('.map__filters');
 const mapFeatures = document.querySelector('.map__features');
@@ -36,9 +37,19 @@ const activateMainPage = () => {
   }
   address.value = START_MARKER_COORDINATE_LAT.toFixed(5) + ', ' + START_MARKER_COORDINATE_LNG.toFixed(5);
 
-
 };
 
 
 
-export {activateMainPage};
+const getDefaultMainPage = () => {
+  advertForm.reset();
+  address.value = START_MARKER_COORDINATE_LAT.toFixed(5) + ', ' + START_MARKER_COORDINATE_LNG.toFixed(5);
+  mapFiltersForm.reset();
+  mainPinMarker.setLatLng({
+    lat: START_MARKER_COORDINATE_LAT,
+    lng: START_MARKER_COORDINATE_LNG,
+  })
+};
+
+
+export {activateMainPage, getDefaultMainPage};
