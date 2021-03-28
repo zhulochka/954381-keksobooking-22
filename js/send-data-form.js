@@ -1,5 +1,4 @@
-import {clearAdvertForm} from './form.js';
-import {setAdvertFormSubmit} from './form.js';
+import {setAdvertFormSubmit} from './api.js';
 
 
-setAdvertFormSubmit(clearAdvertForm);
+setAdvertFormSubmit();

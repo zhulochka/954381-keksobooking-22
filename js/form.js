@@ -1,4 +1,7 @@
 import {TYPES} from './temp-data.js';
+import {getDefaultMainPage} from './status-main-page.js';
+
+
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
@@ -13,17 +16,14 @@ const MIN_PRICE_OF_TYPE = [
 
 const titleAdvertInput = document.querySelector('#title');
 const typeSelect = document.querySelector('#type');
-const typeSelectDefault = typeSelect.value;
 const priceSelect = document.querySelector('#price');
-const priceSelectPlaceholderDefault = priceSelect.placeholder;
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
 const address = document.querySelector('#address');
-
 const roomNumberSelect = document.querySelector('#room_number');
 const guestsNumberSelect = document.querySelector('#capacity');
 const advertForm = document.querySelector('.ad-form');
-
+const buttonAdvertFormReset = document.querySelector('.ad-form__reset');
 
 
 
@@ -40,6 +40,7 @@ titleAdvertInput.addEventListener('input', () => {
 
   titleAdvertInput.reportValidity();
 });
+
 
 
 
@@ -149,32 +150,11 @@ timeOut.addEventListener('change', () => {
 });
 
 
-const setAdvertFormSubmit = (onSuccess) => {
-  advertForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    const formData = new FormData(evt.target);
-    fetch(
-      'https://22.javascript.pages.academy/keksobooking',
-      {
-        method: 'POST',
-        body: formData,
-      })
-      .then(() => onSuccess());
-  });
-};
-
-const clearAdvertForm = () => {
-  titleAdvertInput.value = '';
-  typeSelect.value = typeSelectDefault;
-  priceSelect.value = '';
-  priceSelect.placeholder = priceSelectPlaceholderDefault;
-
-
-
-};
+buttonAdvertFormReset.addEventListener('click', () => {
+  getDefaultMainPage();
+});
 
 
 
 
-
-export {address, setAdvertFormSubmit, clearAdvertForm};
+export {address, advertForm};

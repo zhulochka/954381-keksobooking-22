@@ -1,8 +1,9 @@
-
 import './map.js';
+import './status-main-page.js';
 import './form.js';
-//import './temp-data.js';
+import './filters.js';
 import './render-adverts.js';
 import './send-data-form.js';
-import './status-main-page.js';
+
+import './information-messages.js';
 

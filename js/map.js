@@ -8,7 +8,7 @@ import {FEATURES, typesObjectVocabulary} from './temp-data.js';
 const START_MARKER_COORDINATE_LAT = 35.68950;
 const START_MARKER_COORDINATE_LNG = 139.69171;
 
-const MAP_SCALE = 10;
+const MAP_SCALE = 9;
 const ICON_PIN_SIZE = [
   30,
   30,
@@ -56,12 +56,6 @@ mainPinMarker.on('moveend', (evt) => {
   + evt.target.getLatLng().lng.toFixed(5);
   address.value = currentMarkerCoordinates;
 });
-
-
-
-
-
-
 
 
 const createCustomPopup = (advert) => {
@@ -139,9 +133,6 @@ const createCustomPopup = (advert) => {
 
 
 
-
-
-
 const renderSimilarAdverts = async (similarAdverts) => {
   similarAdverts.forEach((advert) => {
     const icon = L.icon({
@@ -168,10 +159,8 @@ const renderSimilarAdverts = async (similarAdverts) => {
 
 
 
-
-
 //console.log(similarAdverts);
 
-export {START_MARKER_COORDINATE_LAT, START_MARKER_COORDINATE_LNG, renderSimilarAdverts};
+export {START_MARKER_COORDINATE_LAT, START_MARKER_COORDINATE_LNG, renderSimilarAdverts, mainPinMarker};
 
 
