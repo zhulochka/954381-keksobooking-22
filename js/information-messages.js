@@ -25,69 +25,74 @@ const showAlert = () => {
 const main = document.querySelector('main');
 
 
+let successMessage;
 
 const showSuccessMessage = () => {
   const successTemplate = document.querySelector('#success')
     .content
     .querySelector('.success');
-  const successMessage = successTemplate.cloneNode(true);
+  successMessage = successTemplate.cloneNode(true);
   main.appendChild(successMessage);
   successMessage.addEventListener('click', () => {
-    onDocumentClick(successMessage, removeSuccessMessage);
+    onSuccessMessageClick(removeSuccessMessage);
   });
-  document.addEventListener('keydown', (evt) => {
-    onSuccessMessageEscKeydown(evt,successMessage);
-  });
+  document.addEventListener('keydown', onSuccessMessageEscKeydown);
 };
 
-const removeSuccessMessage = (message) => {
-  message.remove();
+const removeSuccessMessage = () => {
+  successMessage.remove();
   document.removeEventListener('keydown', onSuccessMessageEscKeydown);
+
 };
 
-const onDocumentClick = (message, removeInformationMessage) => {
-  removeInformationMessage(message);
+const onSuccessMessageClick = () => {
+  removeSuccessMessage();
 };
 
-const onSuccessMessageEscKeydown = (evt, message) => {
+const onSuccessMessageEscKeydown = (evt) => {
   if (isEscEvent(evt)) {
     evt.preventDefault();
-    removeSuccessMessage(message);
+    removeSuccessMessage();
   }
 };
+
+
+let errorMessage;
 
 const showErrorMessage = () => {
   const errorTemplate = document.querySelector('#error')
     .content
     .querySelector('.error');
-  const errorMessage = errorTemplate.cloneNode(true);
+  errorMessage = errorTemplate.cloneNode(true);
   main.appendChild(errorMessage);
   errorMessage.addEventListener('click', () => {
-    onDocumentClick(errorMessage, removeErrorMessage);
+    onErrorMessageClick(errorMessage, removeErrorMessage);
   });
-  document.addEventListener('keydown', (evt) => {
-    onErrorMessageEscKeydown(evt,errorMessage);
-  });
+  document.addEventListener('keydown', onErrorMessageEscKeydown);
   const buttonErrorMessage = errorMessage.querySelector('.error__button');
   buttonErrorMessage.addEventListener('click', () => {
-    onButtonErrorMessageClick(errorMessage);
+    onButtonErrorMessageClick();
   });
 };
 
-const removeErrorMessage = (message) => {
-  message.remove();
+const removeErrorMessage = () => {
+  errorMessage.remove();
   document.removeEventListener('keydown', onErrorMessageEscKeydown);
 };
 
-const onErrorMessageEscKeydown = (evt, message) => {
+const onErrorMessageClick = () => {
+  removeErrorMessage();
+};
+
+const onErrorMessageEscKeydown = (evt) => {
   if (isEscEvent(evt)) {
     evt.preventDefault();
-    removeErrorMessage(message);
+    removeErrorMessage();
   }
 };
 
-const onButtonErrorMessageClick = (message) => {
-  message.remove();
+const onButtonErrorMessageClick = () => {
+  errorMessage.remove();
 };
 
 
