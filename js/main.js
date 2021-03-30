@@ -1,3 +1,4 @@
+
 import './map.js';
 import './status-main-page.js';
 import './form.js';

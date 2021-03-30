@@ -12,4 +12,4 @@ const NUMBER_ADVERTS_FOR_MAP = 10;
 
 
 
-export {};
+export {NUMBER_ADVERTS_FOR_MAP};
