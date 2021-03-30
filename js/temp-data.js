@@ -26,12 +26,14 @@ const TYPES = [
   'flat',
   'house',
   'bungalow',
+  'any',
 ];
 const TRANSLATION_TYPES = [
   'Дворец',
   'Квартира',
   'Дом',
   'Бунгало',
+  'Любой тип жилья',
 ];
 const TIME = [
   '12:00',

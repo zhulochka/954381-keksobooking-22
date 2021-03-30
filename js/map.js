@@ -1,6 +1,6 @@
 /* global L:readonly */
 
-import {activateMainPage} from './status-main-page.js';
+import {activateMapAndAdForm} from './status-main-page.js';
 import {address} from './form.js';
 import {FEATURES, typesObjectVocabulary} from './temp-data.js';
 
@@ -17,7 +17,7 @@ const ICON_PIN_SIZE = [
 
 const map = L.map('map-canvas')
   .on('load', () => {
-    activateMainPage();
+    activateMapAndAdForm();
   })
 
   .setView({
@@ -132,9 +132,15 @@ const createCustomPopup = (advert) => {
 };
 
 
+const markers = L.layerGroup();
 
-const renderSimilarAdverts = async (similarAdverts) => {
-  similarAdverts.forEach((advert) => {
+const removeAdverts = () => {
+  markers.clearLayers();
+};
+
+const renderAdverts = (adverts) => {
+
+  adverts.forEach((advert) => {
     const icon = L.icon({
       iconUrl: 'img/pin.svg',
       iconSize: [ICON_PIN_SIZE[0], ICON_PIN_SIZE[1]],
@@ -148,19 +154,21 @@ const renderSimilarAdverts = async (similarAdverts) => {
       {
         icon,
       });
+
+
     marker
-      .addTo(map)
+      .addTo(markers)
       .bindPopup(createCustomPopup(advert),
         {
           keepInView: true,
         });
   });
+  markers.addTo(map);
+
 };
 
 
 
-//console.log(similarAdverts);
-
-export {START_MARKER_COORDINATE_LAT, START_MARKER_COORDINATE_LNG, renderSimilarAdverts, mainPinMarker};
+export {START_MARKER_COORDINATE_LAT, START_MARKER_COORDINATE_LNG, renderAdverts, removeAdverts, mainPinMarker};
 
 
